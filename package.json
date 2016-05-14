@@ -1,0 +1,15 @@
+{
+  "name": "hypercouchproxy",
+  "version": "1.0.0",
+  "description": "A proxy server that turns a CouchDB or Cloudant database into a Hypermedia API server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Glynn Bird <glynn.bird@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
+}
