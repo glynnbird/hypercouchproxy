@@ -4,11 +4,13 @@
   "description": "A proxy server that turns a CouchDB or Cloudant database into a Hypermedia API server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Glynn Bird <glynn.bird@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "cfenv": "^1.0.3",
     "express": "^4.13.4",
     "request": "^2.72.0"
   }
