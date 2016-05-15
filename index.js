@@ -1,10 +1,12 @@
-var express = require('express');
-var request = require('request');
-var app = express();
-var COUCH_URL = process.env.COUCH_URL || "http://localhost:5984";
-var jsonish = ["application/json","text/plain"];
+var express = require('express'),
+  compression = require('compression')
+  request = require('request'),
+  app = express(),
+  COUCH_URL = process.env.COUCH_URL || "http://localhost:5984",
+  jsonish = ["application/json","text/plain"],
+  port = require('cfenv').getAppEnv().port;
 
-console.log("COUCH_URL", COUCH_URL);
+app.use(compression());
 
 var proxy = function(req, res, db, links, path) {
   console.log(path);
@@ -28,10 +30,8 @@ var proxy = function(req, res, db, links, path) {
       res.status(res.statusCode).end(body);
     }
   });
-  //req.pipe(request(COUCH_URL + path)).pipe(res)
 }
 
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
   var links =  {
     self: { href: req.url },
@@ -65,8 +65,6 @@ app.get('/:db/:doc', function(req, res) {
   proxy(req, res, req.params.db, links, req.url);
 });
 
-
-var port = require('cfenv').getAppEnv().port;
 app.listen(port, function () {
   console.log('Example app listening on port', port);
 });
